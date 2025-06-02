@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>B-do-i</title>
+  <link rel="stylesheet" href="style2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Honk&family=Permanent+Marker&family=Poetsen+One&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="page2.html">Content</a></li>
+        <li><a href="insite.html">insite</a></li>
+        <li><a href="New4.html">information</a></li>
+        <li><a href="contact.html">contact</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+
+  <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0; gap: 10px;">
+  <h1 id="category-title" style="margin: 0;">knowledge</h1>
+  <button onclick="window.location.href='insite.html'" style="padding: 6px 12px; cursor: pointer;">
+    Back
+  </button>
+</div>
+
+
+  <div id="product-list" class="product-list">
+    <!-- JavaScript จะใส่สินค้าไว้ตรงนี้ -->
+  </div>
+
+  <script>
+    const products = {
+      raccon: [
+        { name: "Raccon", image: "picture/raccon.jpg", desc: "สัตว์เลี้ยงลูกด้วยนมขนาดกลาง มีขนสีเทาน้ำตาล และจุดเด่นคือหน้าคล้ายใส่หน้ากากดำ กับหางลายปล้อง พบได้ในอเมริกาเหนือ ฉลาดและปรับตัวเก่ง มักหาอาหารตามถังขยะหรือริมป่า และชอบใช้น้ำล้างอาหารก่อนกิน" }
+      ],
+      Sloth: [
+        { name: "Sloth", image: "picture/Sloth.jpg", desc: "สัตว์เลี้ยงลูกด้วยนมที่เคลื่อนช้า ใช้เวลาส่วนใหญ่บนต้นไม้ มีขนหนาและเล็บยาว ช่วยให้เกาะกิ่งไม้ได้ดี เป็นสัตว์ที่กินพืชเป็นหลักและมีชีวิตแบบประหยัดพลังงานมากๆ" }
+      ],
+      jellyfish: [
+        { name: "jellyfish", image: "picture/jellyfish.jpg", desc: "สัตว์ทะเลไม่มีโครงกระดูก มีร่างกายโปร่งใส รูปเหมือนร่ม มีหนวดที่ใช้จับเหยื่อและป้องกันตัว บางชนิดมีพิษที่ทำให้รู้สึกเจ็บหรือเป็นอันตรายได้" }
+      ],
+      Killerwhale: [
+        { name: "Killer whale", image: "picture/Killerwhale.webp", desc: "Killer whale หรือ Orca คือวาฬที่มีขนาดใหญ่ แข็งแรงและฉลาดมาก เป็นนักล่าชั้นยอดในทะเล กินทั้งปลาและสัตว์ทะเลอื่นๆ มีสีดำขาวเด่นชัดและอยู่รวมกันเป็นฝูง" }
+      ],
+      Anglerfish: [
+        { name: "Anglerfish", image: "picture/Anglerfish.webp", desc: "ปลาทะเลน้ำลึกที่มีลักษณะพิเศษคือมีก้านค้ำ(เหมือนเบ็ดตกปลา)ที่หัว ใช้ล่อเหยื่อให้เข้ามาใกล้ก่อนจับกิน มีรูปร่างน่ากลัวและมีฟันแหลมคมมาก" }
+      ],
+      PallasCat: [
+        { name: "Pallas Cat", image: "picture/PallasCat.jpg", desc: "แมวป่าปาลลัส คือแมวป่าขนาดเล็กที่มีขนหนาและหนาแน่น อาศัยในภูมิประเทศที่เย็นและแห้ง เช่น ทุ่งหญ้าสูงและภูเขาในเอเชียกลาง หน้าตากลม มีหูสั้น ทำให้ดูน่ารักแต่เป็นสัตว์ที่คล่องตัวและปราดเปรียว" }
+      ],
+      Slothbear: [
+        { name: "Sloth bear", image: "picture/Slothbear.jpg", desc: "หมีชนิดหนึ่งที่มีถิ่นอยู่ในอินเดียและศรีลังกา มีขนหยิกและหน้าตาคล้ายหมีจมูกยาว เขาชอบกินปลวก มด และผลไม้ เป็นหมีที่มีนิสัยขี้อายแต่ถ้ารู้สึกถูกคุกคามจะดุและป้องกันตัวเก่ง" }
+      ],
+      Paintedstork: [
+        { name: "Painted stork", image: "picture/Paintedstork.jpg", desc: "นกน้ำขนาดใหญ่ มีลำตัวขาวและปีกสีดำ มีลายขาวประปราย ปากยาวสีส้มสด ใช้ปากจับปลาหากินตามแหล่งน้ำตื้น ๆ พบได้ในเอเชียใต้และเอเชียตะวันออกเฉียงใต้" }
+      ],
+      GoldenLionTamarinMonkey: [
+        { name: "Golden Lion Tamarin Monkey", image: "picture/GoldenLionTamarinMonkey.webp", desc: "ลิงขนทองคำขนาดเล็กจากป่าฝนบราซิล มีขนสีทองสดใสเหมือนสิงโตตัวน้อย เป็นลิงที่ชอบอยู่เป็นฝูง กินผลไม้ แมลง และสัตว์เล็กๆ" }
+      ],
+      EmeraldTreeBoa: [
+        { name: "Emerald Tree Boa", image: "picture/EmeraldTreeBoa.webp", desc: "งูเขียวต้นไม้สีเขียวมรกตสวยสด มีลายขาวบนตัว มักอยู่บนกิ่งไม้ในป่าฝนเขตร้อนของอเมริกาใต้ เป็นงูที่เคลื่อนไหวช้าและล่าเหยื่อด้วยการซุ่มโจมตี" }
+      ],
+      PrzewalskisHorse: [
+        { name: "Przewalski's Horse", image: "picture/PrzewalskisHorse.jpg", desc: "Przewalski's Horse เป็นม้าป่าชนิดเดียวที่ยังคงอยู่ในปัจจุบัน มีถิ่นกำเนิดในทุ่งหญ้ามองโกเลีย ลักษณะเด่นคือ ตัวเตี้ย แผงคอตั้ง ไม่มีจอนหาง และมีสีขนสีน้ำตาลทอง ม้าชนิดนี้เคยสูญพันธุ์จากธรรมชาติ แต่ถูกเพาะพันธุ์ในสวนสัตว์และนำกลับคืนสู่ป่า ปัจจุบันจัดอยู่ในสถานะใกล้สูญพันธุ์ และมีความสำคัญในด้านการอนุรักษ์สัตว์ป่า" }
+      ],
+      KarelianBearDog: [
+        { name: "Karelian Bear Dog", image: "picture/KarelianBearDog.jpg", desc: "เป็นสุนัขล่าเนื้อสายพันธุ์จากฟินแลนด์ ขนาดกลางถึงใหญ่ แข็งแรง ทนทาน ขนสองชั้นสีดำและขาวเด่นชัด ฉลาด กล้าหาญ และมีสัญชาตญาณการล่าสัตว์สูง ใช้ล่าสัตว์ขนาดใหญ่ เช่น หมี หมูป่า และสัตว์ป่าอื่น ๆ เป็นสุนัขที่ซื่อสัตย์และมีความผูกพันกับเจ้าของ" }
+      ],
+      
+      Hadramphustuberculatus: [
+        { name: "Hadramphus tuberculatus", image: "picture/Hadramphustuberculatus.jpg", desc: "Hadramphus tuberculatus เป็นด้วงงวงที่พบในนิวซีแลนด์ มีลำตัวแข็งและตุ่มเล็ก ๆ บนตัว มักกินพืชบางชนิดและมีบทบาทสำคัญในระบบนิเวศ เนื่องจากถิ่นที่อยู่จำกัดและเสี่ยงต่อการสูญพันธุ์ จึงควรได้รับการอนุรักษ์อย่างเหมาะสม" }
+      ]
+      
+      
+    };
+
+
+    const params = new URLSearchParams(window.location.search);
+const type = params.get('type') || 'raccon';  // Default = Sloth
+const list = products[type] || [];
+
+console.log("Type is:", type);
+console.log("List is:", list);
+
+document.getElementById('category-title').innerText = type 
+  ? "Knowledge " + type.charAt(0).toUpperCase() + type.slice(1) + " !!"
+  : "No product selected";
+
+const productList = document.getElementById('product-list');
+list.forEach(item => {
+  const box = document.createElement('div');
+  box.className = 'product-card';
+  box.innerHTML = `
+    <img src="${item.image}" alt="${item.name}">
+    <h2>${item.name}</h2>
+    <p>${item.desc}</p>
+  `;
+  productList.appendChild(box);
+});
+
+
+
+
+
+  </script>
+
+  <div class="image-chill">
+    <img src="picture/chill-guy.png" class="chill-bro">
+</div>
+
+<script src="script2.js"></script>
+
+
+</body>
+</html>
