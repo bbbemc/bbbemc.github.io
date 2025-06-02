@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B-do-i</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition: 0.4s ease;
+        }
+
+        body,
+        html {
+            background-image: url('photo/batthern.png');
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: auto;
+            font-family: sans-serif;
+
+        }
+
+        header {
+            padding-top: 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 999;
+            padding-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            padding: 10px 0;
+        }
+
+        .navbar {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: #622fc0;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .display {
+            width: 100%;
+            min-height: 100vh;
+            padding-top: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.4s ease;
+            position: relative;
+
+        }
+
+        .sun-mode {
+            background: #ffffff;
+        }
+
+        .moon-mode {
+            background: #2C2C2F;
+        }
+
+        .blue-mode {
+            background: #07071d;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 80%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            will-change: transform;
+            width: max-content;
+            min-width: 100%;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+            margin: 0 10px;
+            background-color: transparent;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.4s;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            user-select: none;
+            pointer-events: auto;
+        }
+
+        .card:hover {
+            transform: scale(1.1) rotateY(10deg);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            transform: rotateX(180deg);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .arrow {
+            font-size: 3rem;
+            cursor: pointer;
+            color: white;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            opacity: 0.8;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .toggle {
+            width: 60px;
+            height: 30px;
+            background: #f3f3f3;
+            border-radius: 999px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -2px -2px 6px rgba(255, 255, 255, 0.7) inset;
+            transition: left 0.4s ease, background 0.4s ease;
+        }
+
+        .circle svg {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .sun {
+            color: #FFD600;
+        }
+
+        .moon {
+            color: white;
+        }
+
+        .blue {
+            color: #07071d;
+        }
+
+        .sun-mode .circle {
+            left: 3px;
+            background: white;
+        }
+
+        .sun-mode .sun {
+            opacity: 1;
+        }
+
+        .moon-mode .circle {
+            left: 18px;
+            background: #2C2C2F;
+        }
+
+        .moon-mode .moon {
+            opacity: 1;
+        }
+
+        .blue-mode .circle {
+            left: 33px;
+            background: #3a3aca;
+        }
+
+        .blue-mode .blue {
+            opacity: 1;
+        }
+
+        body.sun-mode header {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body.moon-mode header {
+            background-color: #2C2C2F;
+            color: #ffffff;
+        }
+
+        body.blue-mode header {
+            background-color: #07071d;
+            color: #ffffff;
+        }
+
+        .chill-bro {
+            width: 200px;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 250px;
+            transform: translate(440%, 70%);
+        }
+    </style>
+</head>
+
+<body class="blue-mode">
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html">Content</a></li>
+                <li><a href="insite.html">insite</a></li>
+                <li><a href="New4.html">information</a></li>
+                <li><a href="contact.html">contact</a></li>
+            </ul>
+        </nav>
+
+        <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0; gap: 10px;">
+            <h1 id="category-title" style="margin: 0;">Choose</h1>
+        </div>
+
+        <div id="product-list" class="product-list">
+            <!-- JavaScript จะใส่สินค้าไว้ตรงนี้ -->
+        </div>
+    </header>
+
+    <div class="display" id="display">
+        <!-- Toggle -->
+        <div class="toggle" onclick="nextMode()">
+            <div class="circle">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                </svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 0112.21 3c0 .13-.01.26-.01.39A9 9 0 1021 12.79z" />
+                </svg>
+                <svg class="blue" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                        d="M8.478 1.6a.75.75 0 0 1 .273 1.026 3.72 3.72 0 0 0-.425 1.121c.058.058.118.114.18.168A4.491 4.491 0 0 1 12 2.25c1.413 0 2.673.651 3.497 1.668.06-.054.12-.11.178-.167a3.717 3.717 0 0 0-.426-1.125.75.75 0 1 1 1.298-.752 5.22 5.22 0 0 1 .671 2.046.75.75 0 0 1-.187.582c-.241.27-.505.52-.787.749a4.494 4.494 0 0 1 .216 2.1c-.106.792-.753 1.295-1.417 1.403-.182.03-.364.057-.547.081.152.227.273.476.359.742a23.122 23.122 0 0 0 3.832-.803 23.241 23.241 0 0 0-.345-2.634.75.75 0 0 1 1.474-.28c.21 1.115.348 2.256.404 3.418a.75.75 0 0 1-.516.75c-1.527.499-3.119.854-4.76 1.049-.074.38-.22.735-.423 1.05 2.066.209 4.058.672 5.943 1.358a.75.75 0 0 1 .492.75 24.665 24.665 0 0 1-1.189 6.25.75.75 0 0 1-1.425-.47 23.14 23.14 0 0 0 1.077-5.306c-.5-.169-1.009-.32-1.524-.455.068.234.104.484.104.746 0 3.956-2.521 7.5-6 7.5-3.478 0-6-3.544-6-7.5 0-.262.037-.511.104-.746-.514.135-1.022.286-1.522.455.154 1.838.52 3.616 1.077 5.307a.75.75 0 1 1-1.425.468 24.662 24.662 0 0 1-1.19-6.25.75.75 0 0 1 .493-.749 24.586 24.586 0 0 1 4.964-1.24h.01c.321-.046.644-.085.969-.118a2.983 2.983 0 0 1-.424-1.05 24.614 24.614 0 0 1-4.76-1.05.75.75 0 0 1-.516-.75c.057-1.16.194-2.302.405-3.417a.75.75 0 0 1 1.474.28c-.164.862-.28 1.74-.345 2.634 1.237.371 2.517.642 3.832.803.085-.266.207-.515.359-.742a18.698 18.698 0 0 1-.547-.08c-.664-.11-1.311-.612-1.417-1.404a4.535 4.535 0 0 1 .217-2.103 6.788 6.788 0 0 1-.788-.751.75.75 0 0 1-.187-.583 5.22 5.22 0 0 1 .67-2.04.75.75 0 0 1 1.026-.273Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Slider -->
+        <div class="slider-container">
+            <div class="arrow left" onclick="slide(-1)">&#10094;</div>
+            <div class="slider" id="slider">
+                <!-- Cards -->
+                <div class="card" data-type="raccon"><img src="picture/raccon.jpg" alt="raccon" /></div>
+                <div class="card" data-type="EmeraldTreeBoa"><img src="picture/EmeraldTreeBoa.webp"
+                        alt="EmeraldTreeBoa" /></div>
+                <div class="card" data-type="jellyfish"><img src="picture/jellyfish.jpg" alt="jellyfish" /></div>
+                <div class="card" data-type="Paintedstork"><img src="picture/Paintedstork.jpg" alt="Paintedstork" />
+                </div>
+                <div class="card" data-type="PallasCat"><img src="picture/PallasCat.jpg" alt="PallasCat" /></div>
+                <div class="card" data-type="Anglerfish"><img src="picture/Anglerfish.webp" alt="Anglerfish" /></div>
+                <div class="card" data-type="GoldenLionTamarinMonkey"><img src="picture/GoldenLionTamarinMonkey.webp"
+                        alt="GoldenLionTamarinMonkey" /></div>
+                <div class="card" data-type="Hadramphustuberculatus"><img src="picture/Hadramphustuberculatus.jpg"
+                        alt="Hadramphustuberculatus" /></div>
+                <div class="card" data-type="Slothbear"><img src="picture/Slothbear.jpg" alt="Slothbear" /></div>
+                <div class="card" data-type="Sloth"><img src="picture/Sloth.jpg" alt="Sloth" /></div>
+                <div class="card" data-type="PrzewalskisHorse"><img src="picture/PrzewalskisHorse.jpg"
+                        alt="PrzewalskisHorse" /></div>
+                <div class="card" data-type="Killerwhale"><img src="picture/Killerwhale.webp" alt="Killerwhale" /></div>
+            </div>
+            <div class="arrow right" onclick="slide(1)">&#10095;</div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle mode
+        let mode = 2;
+        function nextMode() {
+            const body = document.body;
+            body.classList.remove('sun-mode', 'moon-mode', 'blue-mode');
+            mode = (mode + 1) % 3;
+            if (mode === 0) body.classList.add('sun-mode');
+            else if (mode === 1) body.classList.add('moon-mode');
+            else body.classList.add('blue-mode');
+        }
+
+        let currentIndex = 0;
+
+        function getCardWidth() {
+            const card = document.querySelector('.card');
+            if (!card) return 0;
+            const cardStyle = getComputedStyle(card);
+            return card.offsetWidth + parseInt(cardStyle.marginLeft) + parseInt(cardStyle.marginRight);
+        }
+
+        function getVisibleCards() {
+            const container = document.querySelector('.slider-container');
+            return Math.floor(container.offsetWidth / getCardWidth());
+        }
+
+        function updateSlider() {
+            const slider = document.getElementById('slider');
+            const cards = slider.querySelectorAll('.card');
+            const maxIndex = Math.max(0, cards.length - getVisibleCards());
+
+            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+
+            const offset = currentIndex * getCardWidth();
+            slider.style.transform = `translateX(${-offset}px)`;
+        }
+
+        function slide(direction) {
+            const slider = document.getElementById('slider');
+            const cards = slider.querySelectorAll('.card');
+            const maxIndex = Math.max(0, cards.length - getVisibleCards());
+
+            currentIndex += direction;
+            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+
+            updateSlider();
+        }
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.getAttribute('data-type');
+                window.location.href = `JK.html?type=${type}`;
+            });
+        });
+
+        window.addEventListener('resize', updateSlider);
+        window.addEventListener('DOMContentLoaded', () => {
+            updateSlider();
+        });
+    </script>
+
+
+    <div class="image-chill">
+        <img src="picture/chill-guy.png" class="chill-bro">
+    </div>
+
+</body>
+
+</html>
