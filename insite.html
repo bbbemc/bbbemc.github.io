@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>B-do-i</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=VT323&display=swap"
+        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Honk&family=Permanent+Marker&family=Poetsen+One&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=VT323&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html">Contant</a></li>
+                <li><a href="insite.html">insite</a></li>
+                <li><a href="New4.html">information</a></li>
+                <li><a href="contact.html">contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Welcome </h1>
+
+    <div class="center-container">
+        <div class="question-container">
+            Here are some animal facts you might not know!
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-scroll">
+                <ul>
+                    <li><a href="JK.html?type=raccon">Raccon //แรคคูน//</a></li>
+                    <li><a href="JK.html?type=Sloth">Sloth //สลอธ//</a></li>
+                    <li><a href="JK.html?type=jellyfish">jellyfish //แมงกะพรุน//</a></li>
+                    <li><a href="JK.html?type=Killerwhale">Killer whale //วาฬเพชฌฆาต//</a></li>
+                    <li><a href="JK.html?type=Anglerfish">Anglerfish //ปลาแองเกลอร์//</a></li>
+                    <li><a href="JK.html?type=PallasCat">Pallas Cat //แมวพัลลัส//</a></li>
+                    <li><a href="JK.html?type=Slothbear">Sloth bear //หมีปากยาว//</a></li>
+                    <li><a href="JK.html?type=Paintedstork">Painted Stork //นกกาบบัว//</a></li>
+                    <li><a href="JK.html?type=GoldenLionTamarinMonkey">Golden Lion Tamarin Monkey <br>//ลิงทามารินทอง//</a></li>
+                    <li><a href="JK.html?type=EmeraldTreeBoa">Emerald Tree Boa <br>//งูต้นไม้มรกต//</a></li>
+                    <li><a href="JK.html?type=KarelianBearDog">Karelian Bear Dog<br>//สุนัขคาเรเลียนแบร์ด็อก//</a></li>
+                    <li><a href="JK.html?type=Hadramphustuberculatus">Hadramphus tuberculatus<br>//ด้วงงวงฮัดแรมฟัสตุ่มนูน//</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="image-chill">
+    <img src="picture/chill-guy.png" class="chill-bro">
+</div>
+
+<script src="script2.js"></script>
+
+
+<script>
+    const container = document.querySelector('.menu-container');
+    const menuScroll = container.querySelector('.menu-scroll');
+
+    const observer = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const width = entry.contentRect.width;
+            const height = entry.contentRect.height;
+
+            // ปรับขนาดตัวอักษรโดยใช้ความกว้างและความสูงเฉลี่ย
+            const base = (width + height) / 2;
+            const fontSize = Math.max(12, Math.min(36, base / 25)); // ปรับสูตรตามใจ
+            menuScroll.style.fontSize = fontSize + 'px';
+        }
+    });
+
+    observer.observe(container);
+</script>
+
+<div class="cat-walker">
+  <div class="cat"></div>
+</div>
+
+
+</body>
+
+</html>
